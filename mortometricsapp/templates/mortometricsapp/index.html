@@ -1,5 +1,5 @@
 {% comment %} DEPLOYMENT CHANGES {% endcomment %}
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MortoMetrics</title>
     {% comment %} DEPLOYMENT CHANGES {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    {% comment %} <link rel="stylesheet" type="text/css" href="../static/css/index.css" /> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css" />
   </head>
   <body>
     <!-- Header bar with app name and info -->
