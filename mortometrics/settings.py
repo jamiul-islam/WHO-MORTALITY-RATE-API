@@ -28,6 +28,9 @@ DEBUG = True
 # allowed hosts list
 ALLOWED_HOSTS = ['*']
 
+# DEPLOYMENT CHANGES
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 
