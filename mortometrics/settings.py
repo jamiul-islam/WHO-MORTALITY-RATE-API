@@ -26,7 +26,7 @@ SECRET_KEY = '888b-!jgm*d+r^y-=(xz)qqzu_6=gkeyb^*yy7ns$kz3ng7!pi'
 DEBUG = True
 
 # allowed hosts list
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
