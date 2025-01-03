@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MortoMetrics</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css" />
+  </head>
+  <body>
+    <!-- Header bar with app name and info -->
+    <div class="header">
+      <h2>Mortometrics : Statistics of Mortality Rates</h2>
+      <p class="about">
+        Presenting 20 years of mortality rate from cancer, diabetes or crd data.
+        The data covers male, female and overall mortality rates for age group
+        of 30 to 70 years.
+      </p>
+      <p>Developer : Jamiul Islam</p>
+    </div>
+
+    <!-- Links of api endpoints -->
+    <div class="main-content">
+      <!-- GET api endpoint links  -->
+      <div class="left-column">
+        <!-- /api/countries -->
+        <div class="button-container">
+          <div class="link-container">
+            <p>Show all country list </p>
+            <div class="button">
+              <a href="/api/countries">Country List</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- /api/country/country_code/ -->
+        <form class="form-container">
+          <p>View Mortality Rates of</p>
+          <div class="input-container">
+            <label> Country : </label>
+            <select name="country" id="country">
+              {% for country in countries %}
+              <option value="{{ country.country_code }}">
+                {{ country.country_name }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-container">
+            <label>Type :</label>
+            <select name="type" id="type">
+              <option value="">All</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <input
+            type="button"
+            value="Submit"
+            onclick="window.location.href='/api/country/' + document.getElementById('country').value + '/' + document.getElementById('type').value"
+          />
+        </form>
+
+        <!-- /api/mortality_rate/country_code/year -->
+        <form class="form-container">
+          <p>View Mortality Rate of</p>
+          <div class="input-container">
+            <label> Country : </label>
+            <select name="country" id="country_">
+              {% for country in countries %}
+              <option value="{{ country.country_code }}">
+                {{ country.country_name }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-container">
+            <label>Year :</label>
+            <select name="year" id="year">
+              {% for year in years %}
+              <option value="{{year}}">{{year}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input
+            type="button"
+            value="Submit"
+            onclick="window.location.href='/api/mortality_rate/' + document.getElementById('country_').value + '/' + document.getElementById('year').value"
+          />
+        </form>
+
+        <!-- /api/mortality_rate/year -->
+        <form class="form-container">
+          <p>View All Mortality Rate of</p>
+          <div class="input-container">
+            <label>Year :</label>
+            <select name="year" id="year_">
+              {% for year in years %}
+              <option value="{{year}}">{{year}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input
+            type="button"
+            value="Submit"
+            onclick="window.location.href='/api/mortality_rate/' + document.getElementById('year_').value"
+          />
+        </form>
+      </div>
+
+      <!-- POST api endpoint -->
+      <div class="right-column">
+        <div class="button-container">
+          <div class="link-container">
+            <p>View Admin Site </p>
+            <div class="button">
+              <a href="/admin">Admin Site</a>
+            </div>
+          </div>
+        </div>
+
+        <h4>Add new country summmary record</h4>
+        <form
+          action="{% url 'country_summary_list'%}"
+          method="post"
+          onsubmit="redirectToDRF()"
+        >
+          {% csrf_token %}
+          <div class="form-fields">
+            <label>Country : </label>
+            {{forms.country}}
+          </div>
+          <div class="form-fields">
+            <label>Year of Lowest Mortality Rate : </label>
+            {{forms.lowest_mortality_year}}
+          </div>
+          <div class="form-fields">
+            <label>Year of Highest Mortality Rate : </label>
+            {{forms.highest_mortality_year}}
+          </div>
+          <div class="form-fields">
+            <label>Average of overall Mortality Rate : </label>
+            {{forms.avg_overall_mortality_rate}}
+          </div>
+          <div class="form-fields">
+            <label>Average of Male Mortality Rate : </label>
+            {{forms.avg_male_mortality_rate}}
+          </div>
+          <div class="form-fields">
+            <label>Average of Female Mortality Rate : </label>
+            {{forms.avg_female_mortality_rate}}
+          </div>
+          <input class="form-button" type="submit" value="Add New Summary" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function redirectToDRF() {
+        alert("Redirect to DRF view to see post status");
+        setTimeout(function () {
+          window.location.href = "/api/country_summary";
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

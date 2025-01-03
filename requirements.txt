@@ -1,0 +1,6 @@
+pandas
+django==3.0.3
+djangorestframework==3.12.1
+drf-yasg
+factory_boy==3.0.1
+termcolor
