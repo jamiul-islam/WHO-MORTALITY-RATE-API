@@ -47,8 +47,7 @@ class BaseMortalityView(APIView):
         """
         try:
             country = Country.objects.get(pk=country_code)
-            mortality_data = self.data_model.objects.filter(
-                country_data=country)
+            mortality_data = self.data_model.objects.filter(country_data=country)
             serializer = self.data_serializer(mortality_data, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except self.data_model.DoesNotExist:
@@ -91,8 +90,7 @@ class YearlyMortalityRateList(APIView):
 
         try:
             mortality_data = MortalityRate.objects.all()
-            serializer = MortalityRateByYearSerializer(
-                mortality_data, many=True, fields=required_fields)
+            serializer = MortalityRateByYearSerializer(mortality_data, many=True, fields=required_fields)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except MortalityRate.DoesNotExist:
             return HttpResponse(status.HTTP_404_NOT_FOUND)
@@ -123,19 +121,14 @@ class MortalityRateByCountryAndYear(APIView):
             country = Country.objects.get(pk=country_code)
 
             # Retrieve all types of mortality data
-            mortality_rates = MortalityRate.objects.filter(
-                country_data=country)
+            mortality_rates = MortalityRate.objects.filter(country_data=country)
             male_rates = MaleMortalityRate.objects.filter(country_data=country)
-            female_rates = FemaleMortalityRate.objects.filter(
-                country_data=country)
+            female_rates = FemaleMortalityRate.objects.filter(country_data=country)
 
             # Serialize the data
-            mort_serializer = MortalityRateByYearSerializer(
-                mortality_rates, many=True, fields=['country_name', year_field])
-            male_serializer = MaleMortalityRateSerializer(
-                male_rates, many=True, fields=[year_field])
-            female_serializer = FemaleMortalityRateSerializer(
-                female_rates, many=True, fields=[year_field])
+            mort_serializer = MortalityRateByYearSerializer(mortality_rates, many=True, fields=['country_name', year_field])
+            male_serializer = MaleMortalityRateSerializer(male_rates, many=True, fields=[year_field])
+            female_serializer = FemaleMortalityRateSerializer(female_rates, many=True, fields=[year_field])
 
             # Convert to regular dictionaries
             mort_dict = self.convert_to_dict(mort_serializer.data)

@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-''' Code written by me starts here '''
-# admin code for country model
-
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ("country_name", "country_code")
@@ -25,8 +22,8 @@ class FemaleMortalityRateAdmin(admin.ModelAdmin):
 
 
 class SummaryOfCountryAdmin(admin.ModelAdmin):
-    list_display = ("country", "lowest_mortality_year", "highest_mortality_year", "avg_overall_mortality_rate",
-                    "avg_male_mortality_rate", "avg_female_mortality_rate")
+    list_display = ("country", "lowest_mortality_year", "highest_mortality_year",
+                    "avg_overall_mortality_rate", "avg_male_mortality_rate", "avg_female_mortality_rate")
 
 
 # registering table
@@ -35,5 +32,3 @@ admin.site.register(MortalityRate, MortalityRateAdmin)
 admin.site.register(MaleMortalityRate, MaleMortalityRateAdmin)
 admin.site.register(FemaleMortalityRate, FemaleMortalityRateAdmin)
 admin.site.register(SummaryOfCountry, SummaryOfCountryAdmin)
-
-''' Code written by me ends here '''
