@@ -15,12 +15,9 @@ django.setup()
 from mortometricsapp.models import *  # noqa
 
 # csv file path
-mortality_rate_file = os.path.join(os.path.dirname(
-    __file__), '../../clean_datasets/mortality_rate.csv')
-male_mortality_rate_file = os.path.join(os.path.dirname(
-    __file__), '../../clean_datasets/mortality_rate_male.csv')
-female_mortality_rate_file = os.path.join(os.path.dirname(
-    __file__), '../../clean_datasets/mortality_rate_female.csv')
+mortality_rate_file = os.path.join(os.path.dirname(__file__), '../../clean_datasets/mortality_rate.csv')
+male_mortality_rate_file = os.path.join(os.path.dirname(__file__), '../../clean_datasets/mortality_rate_male.csv')
+female_mortality_rate_file = os.path.join(os.path.dirname(__file__), '../../clean_datasets/mortality_rate_female.csv')
 
 # deleting all the previous data from the tables
 Country.objects.all().delete()
