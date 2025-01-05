@@ -92,5 +92,9 @@ You should now be able to access the Django admin site and manage your applicati
 2. To run tests from a specific test module, use the following command:
 
     ```sh
+    # test api
     python manage.py test mortometricsapp.tests_api
+
+    # test serializer
+    python manage.py test mortometricsapp.tests_serializer
     ```
